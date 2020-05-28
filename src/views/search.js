@@ -4,15 +4,17 @@ import * as React from 'react'
 import Box from '../components/box'
 import BoxCenter from '../components/box-center'
 import { Bookmark, RotateCcw } from '../components/icons'
+import SvgLogo from "../components/icons/Logo";
 
 function SearchView({ navigation }) {
   //Navigation will go inside as a property, when we call searchview
   return (
-    <BoxCenter>
+    <BoxCenter bg={"proverbLight"}>
       <Button
         title="Go to Details"
         onPress={() => navigation.navigate('Detail')}
       />
+      <SvgLogo color ="red" />
     </BoxCenter>
   )
 }
