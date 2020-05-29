@@ -1,6 +1,7 @@
 import { TouchableOpacity } from 'react-native'
 import styled from 'styled-components'
 import {
+  position,
   compose,
   color,
   size,
@@ -19,7 +20,8 @@ const Button = styled(TouchableOpacity)(
     flexbox,
     layout,
     borderRadius,
-    borderColor
+    borderColor,
+      position
   )
 )
 
