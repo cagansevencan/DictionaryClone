@@ -41,6 +41,7 @@ function TabBar({ state, descriptors, navigation }) {
                 };*/
 
         return label === 'Search' ? (
+            //Search button
           <Box key={label} p={15} mt={-15} bg="white" borderRadius="full">
             <Button
               size={56}
@@ -54,6 +55,7 @@ function TabBar({ state, descriptors, navigation }) {
           </Box>
         ) : (
           //Anything besides Search then proceed
+            //Tab Button
           <Button
             key={label}
             pt={9} //Padding from top
@@ -62,9 +64,10 @@ function TabBar({ state, descriptors, navigation }) {
             flex={1}
             onPress={onPress}
           >
-            {label === 'History' && <RotateCcw color={theme.colors.textLight} />}
-            {label === 'Favorite' && <Bookmark color={theme.colors.textLight} />}
-            <Box size={3} bg={isFocused ? 'red' : 'white'} mt={6} />
+            {label === 'History' && <RotateCcw color={isFocused? theme.colors.textDark : theme.colors.textLight} />}
+            {label === 'Favorite' && <Bookmark color={isFocused? theme.colors.textDark : theme.colors.textLight} />}
+            {/* Indicator */}
+            <Box size={4} bg={isFocused ? 'red' : 'white'} mt={6} borderRadius={"full"}/>
           </Button>
         )
       })}
