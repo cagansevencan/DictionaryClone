@@ -5,7 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { createStackNavigator } from '@react-navigation/stack' //In order to add pages we need a stack
 
 import TabBar from './components/tab-bar'
-import SearchView from './views/search'
+import SearchView from './views/searchView'
 import HistoryView from './views/history'
 import FavoriteView from './views/favorite'
 import DetailView from './views/detail'

@@ -19,7 +19,7 @@ const colors = {
 }
 
 const radii = {
-  normal: 6, //normally it is 6 px inside the app
+  normal: 8, //normally it is 6 px inside the app
   full: 999
 }
 
