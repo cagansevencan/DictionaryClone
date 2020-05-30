@@ -9,8 +9,7 @@ import SearchView from './views/searchView'
 import HistoryView from './views/history'
 import FavoriteView from './views/favorite'
 import DetailView from './views/detail'
-import Box from './components/box'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { ThemeProvider } from 'styled-components'
 import theme from './utils/theme'
 
@@ -19,7 +18,7 @@ const Tab = createBottomTabNavigator()
 
 function SearchStack() {
   return (
-    <HomeStack.Navigator>
+    <HomeStack.Navigator headerMode={'none'}>
       <HomeStack.Screen name="Search" component={SearchView} />
       <HomeStack.Screen name="Detail" component={DetailView} />
     </HomeStack.Navigator>
@@ -29,7 +28,7 @@ function SearchStack() {
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Box flex={1} as={SafeAreaView}>
+      <SafeAreaProvider>
         <NavigationContainer>
           <Tab.Navigator
             initialRouteName="Search"
@@ -40,7 +39,7 @@ function App() {
             <Tab.Screen name="Favorite" component={FavoriteView} />
           </Tab.Navigator>
         </NavigationContainer>
-      </Box>
+      </SafeAreaProvider>
     </ThemeProvider>
   )
 }

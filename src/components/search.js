@@ -8,6 +8,7 @@ import Button from './button'
 import { Keyboard } from 'react-native'
 import { Close } from './icons'
 
+
 function SearchBox() {
     //Bit confused with these 2 following calls
   const [isFocus, setFocus] = React.useState(false)
@@ -30,7 +31,7 @@ function SearchBox() {
           //clearButtonMode={'always'}
           style={{
             shadowColor: '#000',
-            shadowOpacity: 0.2,
+            shadowOpacity: 0.15,
             elevation: 0,
             shadowRadius: 24,
             shadowOffset: {

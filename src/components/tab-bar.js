@@ -1,5 +1,4 @@
 import React from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
 
 import Button from './button'
 import { Search, Bookmark, RotateCcw } from './icons'
@@ -9,7 +8,16 @@ import theme from '../utils/theme'
 
 function TabBar({ state, descriptors, navigation }) {
   return (
-    <View style={{ flexDirection: 'row' }}>
+    <Box
+        bg={"white"}
+        flexDirection= "row"
+         style={{
+           shadowColor: '#000',
+           shadowOpacity: 0.1,
+           elevation: 0,
+           shadowRadius: 10
+         }}
+    >
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key]
 
@@ -71,7 +79,7 @@ function TabBar({ state, descriptors, navigation }) {
           </Button>
         )
       })}
-    </View>
+    </Box>
   )
 }
 
