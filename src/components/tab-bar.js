@@ -6,9 +6,10 @@ import Box from './box'
 
 import theme from '../utils/theme'
 
-function TabBar({ state, descriptors, navigation }) {
+function TabBar({ state, descriptors, navigation }){
   return (
     <Box
+        pb={18}
         bg={"white"}
         flexDirection= "row"
          style={{
@@ -17,6 +18,7 @@ function TabBar({ state, descriptors, navigation }) {
            elevation: 0,
            shadowRadius: 10
          }}
+
     >
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key]

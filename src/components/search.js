@@ -9,10 +9,30 @@ import { Keyboard } from 'react-native'
 import { Close } from './icons'
 
 
-function SearchBox() {
+function SearchBox({ onChangeFocus }) {
     //Bit confused with these 2 following calls
   const [isFocus, setFocus] = React.useState(false)
     const [value, setValue] = React.useState("")
+
+    //When page is loaded use effect
+    React.useEffect(() =>{
+        Keyboard.addListener("keyboardDidShow", _keyboardDidShow)
+        Keyboard.addListener("keyboardDidHide", _keyboardDidHide)
+        // cleanup function
+        return function () {
+            Keyboard.removeListener("keyboardDidShow", _keyboardDidShow)
+            Keyboard.removeListener("keyboardDidHide", _keyboardDidHide)
+        }
+    })
+
+
+    const _keyboardDidShow = () => {
+    onChangeFocus(true)
+    }
+
+    const _keyboardDidHide = () => {
+        onChangeFocus(false)
+    }
 
   const onCancel = () => {
     setFocus(false)
