@@ -14,25 +14,10 @@ function SearchBox({ onChangeFocus }) {
   const [isFocus, setFocus] = React.useState(false)
     const [value, setValue] = React.useState("")
 
-    //When page is loaded use effect
-    React.useEffect(() =>{
-        Keyboard.addListener("keyboardDidShow", _keyboardDidShow)
-        Keyboard.addListener("keyboardDidHide", _keyboardDidHide)
-        // cleanup function
-        return function () {
-            Keyboard.removeListener("keyboardDidShow", _keyboardDidShow)
-            Keyboard.removeListener("keyboardDidHide", _keyboardDidHide)
-        }
-    })
+React.useEffect(() => {
+onChangeFocus(isFocus)
+}, [isFocus, onChangeFocus] )
 
-
-    const _keyboardDidShow = () => {
-    onChangeFocus(true)
-    }
-
-    const _keyboardDidHide = () => {
-        onChangeFocus(false)
-    }
 
   const onCancel = () => {
     setFocus(false)
