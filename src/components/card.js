@@ -1,16 +1,19 @@
 import React from 'react'
 import Text from './text'
 import Box from "./box";
+import Button from "./button";
 import theme from "../utils/theme";
 
 
 
 export function CardContainer({ children, ...props}) {
-  return <Box bg="white" borderRadius={"normal"}  py={16} px={12} {...props}>
-    <Box borderLeftWidth={3} px={12} borderLeftColor={"light"}>
+  return <Button
+      bg="white" borderRadius={"normal"}  py={16} px={12} {...props}>
+
+    <Box flex={1} borderLeftWidth={3} px={12} borderLeftColor={"light"}>
       {children}
     </Box>
-  </Box>
+  </Button>
 }
 
 
@@ -23,5 +26,5 @@ export function CardTitle({ children }) {
 }
 
 export function CardSummary({ children }) {
-  return <Text fontSize={14}>{children}</Text>
+  return <Text color={"textMedium"} mt={8} fontSize={14}>{children}</Text>
 }

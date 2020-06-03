@@ -15,7 +15,6 @@ function HistoryView() {
   return (
     <Box as={SafeAreaView} flex={1}>
       <Text>History</Text>
-
     </Box>
   )
 }

@@ -29,23 +29,40 @@ const DATA = [
   }
 ]
 
+const HERO_HEIGHT = 230
+
+
 function SearchView({ navigation }) {
   const [isSearchFocus, setSearchFocus] = React.useState(false)
-  const heroHeight = React.useRef(new Animated.Value(285)).current
+  const [bgOpacity] = React.useState(new Animated.Value(1))
+  const [heroHeight] = React.useState(new Animated.Value(HERO_HEIGHT))
 
   React.useEffect(() => {
     if (isSearchFocus) {
+      // bg opacity
+      Animated.timing(bgOpacity, {
+        toValue: 0,
+        duration: 200
+      }).start()
+      //hero-height
       Animated.timing(heroHeight, {
         toValue: 84,
         duration: 200
       }).start()
     } else {
+      // bg opacity
+      Animated.timing(bgOpacity, {
+        toValue: 1,
+        duration: 200
+      }).start()
+
+      // hero-height
       Animated.timing(heroHeight, {
-        toValue: 285,
+        toValue: HERO_HEIGHT,
         duration: 180
       }).start()
     }
-  }, [heroHeight, isSearchFocus])
+  }, [bgOpacity, heroHeight, isSearchFocus])
 
   useFocusEffect(
     React.useCallback(() => {
@@ -63,13 +80,13 @@ function SearchView({ navigation }) {
         zIndex={1}
         height={heroHeight}
       >
-        {!isSearchFocus && (
-          <Bg flex={1} alignItems={'center'} justifyContent={'center'}>
-            <Box>
+        <Box mt={120} as={Animated.View} opacity={bgOpacity} >
+          <Bg mt={-16}>
+            <Box flex={1} alignItems={'center'} justifyContent={'center'}  >
               <SvgLogo width={120} color="white" />
             </Box>
           </Bg>
-        )}
+        </Box>
 
         <Box
           position={'absolute'}
@@ -88,20 +105,28 @@ function SearchView({ navigation }) {
             <Text> History </Text>
           </Box>
         ) : (
-          <Box py={40}  px={16} flex={1}>
+          <Box py={40} px={16} flex={1}>
             <Box>
-              <Text color={"textLight"}> Bir Deyim </Text>
-              <CardContainer mt={10}>
-                <CardTitle> on para </CardTitle>
+              <Text color={'textLight'}> Bir Deyim </Text>
+              <CardContainer
+                mt={10}
+                onPress={() => navigation.navigate('Detail')}
+              >
+                <CardTitle>on para </CardTitle>
                 <CardSummary>cok az (para).</CardSummary>
               </CardContainer>
             </Box>
 
             <Box mt={40}>
-              <Text color={"textLight"}>Bir deyim - Atasozu</Text>
-              <CardContainer mt={10}>
-                <CardTitle> siyem siyem aglamak </CardTitle>
-                <CardSummary>hafif hafif, ince ince durmadan gozyasi dokmek.</CardSummary>
+              <Text color={'textLight'}>Bir deyim - Atasozu</Text>
+              <CardContainer
+                mt={10}
+                onPress={() => navigation.navigate('Detail')}
+              >
+                <CardTitle>siyem siyem aglamak </CardTitle>
+                <CardSummary>
+                  hafif hafif, ince ince durmadan gozyasi dokmek.
+                </CardSummary>
               </CardContainer>
             </Box>
 
