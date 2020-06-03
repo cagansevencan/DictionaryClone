@@ -8,26 +8,24 @@ import Button from './button'
 import { Keyboard } from 'react-native'
 import { Close } from './icons'
 
-
 function SearchBox({ onChangeFocus }) {
-    //Bit confused with these 2 following calls
+  //Bit confused with these 2 following calls
   const [isFocus, setFocus] = React.useState(false)
-    const [value, setValue] = React.useState("")
+  const [value, setValue] = React.useState('')
 
-React.useEffect(() => {
-onChangeFocus(isFocus)
-}, [isFocus, onChangeFocus] )
-
+  React.useEffect(() => {
+    onChangeFocus(isFocus)
+  }, [isFocus, onChangeFocus])
 
   const onCancel = () => {
     setFocus(false)
     Keyboard.dismiss()
   }
 
-    const onClear = () => {
-        setValue("")
-        Keyboard.dismiss()
-    }
+  const onClear = () => {
+    setValue('')
+    Keyboard.dismiss()
+  }
 
   return (
     <Box flexDirection="row" alignItems={'center'}>
@@ -54,25 +52,24 @@ onChangeFocus(isFocus)
           borderRadius="normal"
           value={value}
           onFocus={() => setFocus(true)}
-          onChangeText={text=>setValue(text)}
+          onChangeText={text => setValue(text)}
         />
-          {value.length > 0 &&
-              <Button position="absolute" right={16} top={14}
-                      onPress={onClear}>
-                  <Close stroke={theme.colors.textDark}/>
-              </Button>
-          }
+        {value.length > 0 && (
+          <Button position="absolute" right={16} top={14} onPress={onClear}>
+            <Close stroke={theme.colors.textDark} />
+          </Button>
+        )}
         <Button position="absolute" left={16} top={14}>
           <SvgSearch color={theme.colors.textMedium} />
         </Button>
       </Box>
-        <Box>
+      <Box>
         {isFocus && (
           <Button onPress={onCancel} px={15} height={52}>
             <Text>Vazgec</Text>
           </Button>
         )}
-        </Box>
+      </Box>
     </Box>
   )
 }
