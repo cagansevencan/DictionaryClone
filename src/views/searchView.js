@@ -10,6 +10,7 @@ import SafeAreaView from 'react-native-safe-area-view'
 import Text from '../components/text'
 import { CardSummary, CardTitle, CardContainer } from '../components/card'
 import { useFocusEffect } from '@react-navigation/core'
+import { SimpleCardContainer, SimpleCardTitle } from '../components/simple-card'
 
 const DATA = [
   {
@@ -30,7 +31,6 @@ const DATA = [
 ]
 
 const HERO_HEIGHT = 230
-
 
 function SearchView({ navigation }) {
   const [isSearchFocus, setSearchFocus] = React.useState(false)
@@ -80,9 +80,9 @@ function SearchView({ navigation }) {
         zIndex={1}
         height={heroHeight}
       >
-        <Box mt={120} as={Animated.View} opacity={bgOpacity} >
-          <Bg mt={-16}>
-            <Box flex={1} alignItems={'center'} justifyContent={'center'}  >
+        <Box mt={60} as={Animated.View} opacity={bgOpacity}>
+          <Bg mt={44}>
+            <Box flex={1} alignItems={'center'} justifyContent={'center'}>
               <SvgLogo width={120} color="white" />
             </Box>
           </Bg>
@@ -102,7 +102,15 @@ function SearchView({ navigation }) {
       <Box flex={1} bg="softRed" pt={isSearchFocus ? 0 : 26}>
         {isSearchFocus ? (
           <Box p={30} flex={1}>
-            <Text> History </Text>
+            <SimpleCardContainer>
+              <SimpleCardTitle>Kalem</SimpleCardTitle>
+            </SimpleCardContainer>
+            <SimpleCardContainer>
+              <SimpleCardTitle>Kalem</SimpleCardTitle>
+            </SimpleCardContainer>
+            <SimpleCardContainer>
+              <SimpleCardTitle>Kalem</SimpleCardTitle>
+            </SimpleCardContainer>
           </Box>
         ) : (
           <Box py={40} px={16} flex={1}>
