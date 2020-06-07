@@ -102,15 +102,19 @@ function SearchView({ navigation }) {
       <Box flex={1} bg="softRed" pt={isSearchFocus ? 0 : 26}>
         {isSearchFocus ? (
           <Box p={30} flex={1}>
-            <SimpleCardContainer>
-              <SimpleCardTitle>Kalem</SimpleCardTitle>
-            </SimpleCardContainer>
-            <SimpleCardContainer>
-              <SimpleCardTitle>Kalem</SimpleCardTitle>
-            </SimpleCardContainer>
-            <SimpleCardContainer>
-              <SimpleCardTitle>Kalem</SimpleCardTitle>
-            </SimpleCardContainer>
+
+             <FlatList
+              data={DATA}
+              keyExtractor={item => item.id}
+              renderItem={({ item }) => (
+                <Box py={5}>
+                  <SimpleCardContainer>
+                    <SimpleCardTitle> {item.title} </SimpleCardTitle>
+                  </SimpleCardContainer>
+                </Box>
+              )}
+              ListHeaderComponent={<Text color={'textLight'}>Son Arananlar </Text>}
+            />
           </Box>
         ) : (
           <Box py={40} px={16} flex={1}>
@@ -138,18 +142,7 @@ function SearchView({ navigation }) {
               </CardContainer>
             </Box>
 
-            {/* <FlatList
-              data={DATA}
-              renderItem={({ item }) => (
-                <Box py={5}>
-                  <CardContainer>
-                    <CardTitle> {item.title} </CardTitle>
-                    <CardSummary>{item.summary}</CardSummary>
-                  </CardContainer>
-                </Box>
-              )}
-              keyExtractor={item => item.id}
-            />*/}
+
           </Box>
         )}
       </Box>
