@@ -12,15 +12,52 @@ import DetailView from './views/detail'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { ThemeProvider } from 'styled-components'
 import theme from './utils/theme'
+import { MoreHorizontal, Left } from './components/icons'
+import Button from './components/button'
+import { CardContainer } from './components/card'
 
 const HomeStack = createStackNavigator()
 const Tab = createBottomTabNavigator()
 
 function SearchStack() {
   return (
-    <HomeStack.Navigator headerMode={'none'}>
-      <HomeStack.Screen name="Search" component={SearchView} />
-      <HomeStack.Screen name="Detail" component={DetailView} />
+    <HomeStack.Navigator>
+      <HomeStack.Screen
+        name="Search"
+        component={SearchView}
+        options={() => {
+          return {
+            header: () => {}
+          }
+        }}
+      />
+      <HomeStack.Screen
+        name="Detail"
+        component={DetailView}
+        options={({ route, navigation }) => {
+          return {
+            title: route.params.title || 'Bos',
+            headerStyle: {
+              backgroundColor: theme.colors.softRed,
+              shadowColor: 'transparent'
+            },
+            headerLeft: () => (
+              <Button height={"100%"}
+                      px={20}
+                      onPress={() => navigation.navigate('Search')}>
+                <Left color={theme.colors.textDark} />
+              </Button>
+            ),
+            headerRight: () => (
+              <Button height={"100%"}
+                      px={20}
+                      onPress={() => navigation.navigate('Search')}>
+                <MoreHorizontal color={theme.colors.textDark} />
+              </Button>
+            )
+          }
+        }}
+      />
     </HomeStack.Navigator>
   )
 }

@@ -122,7 +122,7 @@ function SearchView({ navigation }) {
               <Text color={'textLight'}> Bir Deyim </Text>
               <CardContainer
                 mt={10}
-                onPress={() => navigation.navigate('Detail')}
+                onPress={() => navigation.navigate('Detail', {title:"on para"} )}
               >
                 <CardTitle>on para </CardTitle>
                 <CardSummary>cok az (para).</CardSummary>
@@ -133,7 +133,7 @@ function SearchView({ navigation }) {
               <Text color={'textLight'}>Bir deyim - Atasozu</Text>
               <CardContainer
                 mt={10}
-                onPress={() => navigation.navigate('Detail')}
+                onPress={() => navigation.navigate('Detail', {title:"Siyem"})}
               >
                 <CardTitle>siyem siyem aglamak </CardTitle>
                 <CardSummary>
