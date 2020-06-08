@@ -101,19 +101,19 @@ function SearchView({ navigation }) {
       {/* content */}
       <Box flex={1} bg="softRed" pt={isSearchFocus ? 0 : 26}>
         {isSearchFocus ? (
-          <Box p={30} flex={1}>
-
+          <Box  flex={1}>
              <FlatList
+              style={{padding: 16}}
               data={DATA}
               keyExtractor={item => item.id}
               renderItem={({ item }) => (
-                <Box py={5}>
+                <Box py={6}>
                   <SimpleCardContainer>
                     <SimpleCardTitle> {item.title} </SimpleCardTitle>
                   </SimpleCardContainer>
                 </Box>
               )}
-              ListHeaderComponent={<Text color={'textLight'}>Son Arananlar </Text>}
+              ListHeaderComponent={<Text color={'textLight'} mb={10}>Son Arananlar </Text>}
             />
           </Box>
         ) : (
