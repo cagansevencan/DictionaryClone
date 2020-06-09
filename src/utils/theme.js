@@ -1,5 +1,9 @@
 const space = []
 
+const sizes = {
+  actionButton: 48
+}
+
 const colors = {
   red: '#E11E3C', //normally it is 6 px inside the app
   softRed: '#F8F8F8',
@@ -26,5 +30,6 @@ const radii = {
 export default {
   space,
   radii,
-  colors
+  colors,
+  sizes
 }

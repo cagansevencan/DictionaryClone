@@ -13,7 +13,7 @@ function HistoryView() {
     )
 
   return (
-    <Box as={SafeAreaView} flex={1}>
+    <Box as={SafeAreaView} flex={1} style={{justifyContent: 'center', alignItems: 'center'} }  >
       <Text>History</Text>
     </Box>
   )
