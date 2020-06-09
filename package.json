@@ -15,7 +15,6 @@
     "@react-navigation/bottom-tabs": "^5.5.0",
     "@react-navigation/native": "^5.4.3",
     "@react-navigation/stack": "^5.4.0",
-    "logkitty": "^0.7.1",
     "react": "16.8.1",
     "react-native": "0.61.0",
     "react-native-gesture-handler": "^1.6.1",
