@@ -166,7 +166,7 @@ function SearchView({ navigation }) {
                     <CardSummary>{homeData?.atasoz[0].anlam}</CardSummary>
                   </>
                 ) : (
-                  <ActivityIndicator />
+                  <ActivityIndicator  />
                 )}
               </CardContainer>
             </Box>
