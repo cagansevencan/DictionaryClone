@@ -11,6 +11,7 @@ import Text from '../components/text'
 import { CardSummary, CardTitle, CardContainer } from '../components/card'
 import { useFocusEffect } from '@react-navigation/core'
 import { SimpleCardContainer, SimpleCardTitle } from '../components/simple-card'
+import SuggestionCard from '../components/suggestion-card'
 
 const DATA = [
   {
@@ -133,43 +134,18 @@ function SearchView({ navigation }) {
           </Box>
         ) : (
           <Box py={40} px={16} flex={1}>
-            <Box>
-              <Text color={'textLight'}> Bir Kelime </Text>
-              <CardContainer
-                mt={10}
-                onPress={() =>
-                  navigation.navigate('Detail', { title: 'on para' })
-                }
-              >
-                {homeData ? (
-                  <>
-                    <CardTitle>{homeData?.kelime[0].madde}</CardTitle>
-                    <CardSummary>{homeData?.kelime[0].anlam}</CardSummary>
-                  </>
-                ) : (
-                  <ActivityIndicator />
-                )}
-              </CardContainer>
-            </Box>
+            <SuggestionCard
+              title={'Bir Kelime'}
+              data={homeData?.kelime[0]}
+              onPress={() => navigation.navigate('Detail')}
+            />
 
-            <Box mt={40}>
-              <Text color={'textLight'}>Bir deyim - Atasozu</Text>
-              <CardContainer
-                mt={10}
-                onPress={() =>
-                  navigation.navigate('Detail', { title: 'Siyem' })
-                }
-              >
-                {homeData ? (
-                  <>
-                    <CardTitle>{homeData?.atasoz[0].madde}</CardTitle>
-                    <CardSummary>{homeData?.atasoz[0].anlam}</CardSummary>
-                  </>
-                ) : (
-                  <ActivityIndicator  />
-                )}
-              </CardContainer>
-            </Box>
+            <SuggestionCard
+              mt={40}
+              title={'Bir Deyim - Atasozu'}
+              data={homeData?.atasoz[0]}
+              onPress={() => navigation.navigate('Detail')}
+            />
           </Box>
         )}
       </Box>
