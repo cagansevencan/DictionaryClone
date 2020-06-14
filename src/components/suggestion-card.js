@@ -19,7 +19,7 @@ function SuggestionCard({title, onPress, data, ...props}){
                         <CardSummary>{data.anlam}</CardSummary>
                     </>
                 ) : (
-                    <ActivityIndicator  />
+                    <ActivityIndicator />
                 )}
             </CardContainer>
         </Box>

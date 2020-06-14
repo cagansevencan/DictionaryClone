@@ -1,4 +1,4 @@
-import { StatusBar, Animated, FlatList, ActivityIndicator } from 'react-native'
+import { StatusBar, Animated } from 'react-native'
 import * as React from 'react'
 
 import Box from '../components/box'
@@ -7,11 +7,9 @@ import SvgLogo from '../components/icons/Logo'
 import Search from '../components/search'
 
 import SafeAreaView from 'react-native-safe-area-view'
-import Text from '../components/text'
-import { CardSummary, CardTitle, CardContainer } from '../components/card'
 import { useFocusEffect } from '@react-navigation/core'
-import { SimpleCardContainer, SimpleCardTitle } from '../components/simple-card'
 import SuggestionCard from '../components/suggestion-card'
+import SearchHistoryList from "../components/latest-history-list";
 
 const DATA = [
   {
@@ -114,23 +112,7 @@ function SearchView({ navigation }) {
       <Box flex={1} bg="softRed" pt={isSearchFocus ? 0 : 26}>
         {isSearchFocus ? (
           <Box flex={1}>
-            <FlatList
-              style={{ padding: 16 }}
-              data={DATA}
-              keyExtractor={item => item.id}
-              renderItem={({ item }) => (
-                <Box py={6}>
-                  <SimpleCardContainer>
-                    <SimpleCardTitle> {item.title} </SimpleCardTitle>
-                  </SimpleCardContainer>
-                </Box>
-              )}
-              ListHeaderComponent={
-                <Text color={'textLight'} mb={10}>
-                  Son Arananlar{' '}
-                </Text>
-              }
-            />
+            <SearchHistoryList data={DATA}/>
           </Box>
         ) : (
           <Box py={40} px={16} flex={1}>
