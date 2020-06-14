@@ -9,7 +9,7 @@ function SearchHistoryList({data}) {
   return (
     <FlatList
       style={{ padding: 16 }}
-      data={data }
+      data={data}
       keyExtractor={item => item.id}
       renderItem={({ item }) => (
         <Box py={6}>

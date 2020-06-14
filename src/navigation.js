@@ -14,7 +14,6 @@ import theme from './utils/theme'
 import { MoreHorizontal, Left } from './components/icons'
 import Button from './components/button'
 
-
 const HomeStack = createStackNavigator()
 const Tab = createBottomTabNavigator()
 
@@ -41,16 +40,20 @@ function SearchStack() {
               shadowColor: 'transparent'
             },
             headerLeft: () => (
-              <Button height={"100%"}
-                      px={20}
-                      onPress={() => navigation.navigate('Search')}>
+              <Button
+                height={'100%'}
+                px={20}
+                onPress={() => navigation.navigate('Search')}
+              >
                 <Left color={theme.colors.textDark} />
               </Button>
             ),
             headerRight: () => (
-              <Button height={"100%"}
-                      px={20}
-                      onPress={() => navigation.navigate('Search')}>
+              <Button
+                height={'100%'}
+                px={20}
+                onPress={() => navigation.navigate('Search')}
+              >
                 <MoreHorizontal color={theme.colors.textDark} />
               </Button>
             )
@@ -63,17 +66,16 @@ function SearchStack() {
 
 function TabNavigator() {
   return (
-        <NavigationContainer>
-          <Tab.Navigator
-            initialRouteName="Search"
-            tabBar={props => <TabBar {...props} />}
-          >
-            <Tab.Screen name="History" component={HistoryView} />
-            <Tab.Screen name="Search" component={SearchStack} />
-            <Tab.Screen name="Favorite" component={FavoriteView} />
-          </Tab.Navigator>
-        </NavigationContainer>
-
+    <NavigationContainer>
+      <Tab.Navigator
+        initialRouteName="Search"
+        tabBar={props => <TabBar {...props} />}
+      >
+        <Tab.Screen name="History" component={HistoryView} />
+        <Tab.Screen name="Search" component={SearchStack} />
+        <Tab.Screen name="Favorite" component={FavoriteView} />
+      </Tab.Navigator>
+    </NavigationContainer>
   )
 }
 

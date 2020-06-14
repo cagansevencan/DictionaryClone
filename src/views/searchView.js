@@ -1,15 +1,13 @@
-import { StatusBar, Animated } from 'react-native'
+import { StatusBar } from 'react-native'
 import * as React from 'react'
 
 import Box from '../components/box'
-import Bg from '../components/box'
-import SvgLogo from '../components/icons/Logo'
-import Search from '../components/search'
 
 import SafeAreaView from 'react-native-safe-area-view'
 import { useFocusEffect } from '@react-navigation/core'
 import SuggestionCard from '../components/suggestion-card'
-import SearchHistoryList from "../components/latest-history-list";
+import SearchHistoryList from '../components/latest-history-list'
+import HomeSearch from '../components/home-search'
 
 const DATA = [
   {
@@ -33,8 +31,6 @@ const HERO_HEIGHT = 230
 
 function SearchView({ navigation }) {
   const [isSearchFocus, setSearchFocus] = React.useState(false)
-  const [bgOpacity] = React.useState(new Animated.Value(1))
-  const [heroHeight] = React.useState(new Animated.Value(HERO_HEIGHT))
   const [homeData, setHomeData] = React.useState(null) //when data received first let it be an empty object
 
   const getHomeData = async () => {
@@ -47,33 +43,6 @@ function SearchView({ navigation }) {
     getHomeData() //start this method when the page is loaded initally
   })
 
-  React.useEffect(() => {
-    if (isSearchFocus) {
-      // bg opacity
-      Animated.timing(bgOpacity, {
-        toValue: 0,
-        duration: 200
-      }).start()
-      //hero-height
-      Animated.timing(heroHeight, {
-        toValue: 84,
-        duration: 200
-      }).start()
-    } else {
-      // bg opacity
-      Animated.timing(bgOpacity, {
-        toValue: 1,
-        duration: 200
-      }).start()
-
-      // hero-height
-      Animated.timing(heroHeight, {
-        toValue: HERO_HEIGHT,
-        duration: 180
-      }).start()
-    }
-  }, [bgOpacity, heroHeight, isSearchFocus])
-
   useFocusEffect(
     React.useCallback(() => {
       StatusBar.setBarStyle(isSearchFocus ? 'dark-content' : 'light-content')
@@ -83,36 +52,17 @@ function SearchView({ navigation }) {
 
   //Navigation will go inside as a property, when we call searchview
   return (
-    <Box as={SafeAreaView} bg={isSearchFocus ? 'softRed' : 'red'} flex={1}>
-      <Box
-        as={Animated.View}
-        position={'relative'}
-        zIndex={1}
-        height={heroHeight}
-      >
-        <Box mt={60} as={Animated.View} style={{ opacity: bgOpacity }}>
-          <Bg mt={44}>
-            <Box flex={1} alignItems={'center'} justifyContent={'center'}>
-              <SvgLogo width={120} color="white" />
-            </Box>
-          </Bg>
-        </Box>
+    <Box as={SafeAreaView} bg={'softRed'} flex={1}>
+      <HomeSearch
+        isSearchFocus={isSearchFocus}
+        onSearchFocus={setSearchFocus}
+      />
 
-        <Box
-          position={'absolute'}
-          left={0}
-          bottom={isSearchFocus ? 0 : -42}
-          p={16}
-          width={'100%'}
-        >
-          <Search onChangeFocus={status => setSearchFocus(status)} />
-        </Box>
-      </Box>
       {/* content */}
       <Box flex={1} bg="softRed" pt={isSearchFocus ? 0 : 26}>
         {isSearchFocus ? (
           <Box flex={1}>
-            <SearchHistoryList data={DATA}/>
+            <SearchHistoryList data={DATA} />
           </Box>
         ) : (
           <Box py={40} px={16} flex={1}>
