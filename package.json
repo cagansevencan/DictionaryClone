@@ -11,12 +11,12 @@
     "svgr": "svgr ./src/icons -d ./src/components/icons --native --svg-props 'className=' --svgo-config .svgorc.json"
   },
   "dependencies": {
+    "@react-native-community/cli-platform-android": "^4.10.0",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/bottom-tabs": "^5.5.0",
     "@react-navigation/core": "latest",
     "@react-navigation/native": "^5.4.3",
     "@react-navigation/stack": "^5.4.0",
-    "logkitty": "^0.7.1",
     "react": "16.8.1",
     "react-native": "^0.61.0",
     "react-native-gesture-handler": "^1.6.1",
