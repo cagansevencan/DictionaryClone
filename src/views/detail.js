@@ -7,12 +7,17 @@ import Text from '../components/text'
 import ActionButton from '../components/actionButton'
 import { MoreHorizontal } from '../components/icons'
 import { ActionTitle } from '../components/actionButton'
-import {DetailSummaryItemContainer, DetailSummaryItemTitle, DetailSummaryItemSummary} from '../components/detail-summary-item'
-import theme from "../utils/theme";
-import {Bookmark, BookmarkSolid, Sound, Hand} from "../components/icons/"
-import Svg from "react-native-svg";
+import DetailSummaryItemContainer from '../components/detail-summary-item'
+import theme from '../utils/theme'
+import { Bookmark, Sound, Hand } from '../components/icons/'
+import Svg from 'react-native-svg'
+import LoaderText from '../components/LoaderText'
 
-function DetailView() {
+function DetailView({ route }) {
+  const keyword = 'milliyet'
+  const [data, setData] = React.useState(null)
+
+
   useFocusEffect(
     React.useCallback(() => {
       StatusBar.setBarStyle('dark-content')
@@ -20,54 +25,54 @@ function DetailView() {
     }, [])
   )
 
+  const getDetailData = async () => {
+    const response = await fetch(`https://sozluk.gov.tr/gts?ara=${keyword}`)
+    const data = await response.json()
+    console.log(data[0])
+    setData(data[0])
+  }
+
+  React.useEffect(() => {
+    getDetailData()
+  }, [])
+
   return (
-    <Box as={SafeAreaView} bg={'softRed'}  flex={1}>
+    <Box as={SafeAreaView} bg={'softRed'} flex={1}>
       <Box as={ScrollView} p={16}>
         <Box>
-        <Text fontSize={32} fontWeight={'bold'}>
-          Detail
-        </Text>
-        <Text color={'textLight'} mt={6}>
-          Arapca Kalem
-        </Text>
-      </Box>
-      <Box flexDirection={'row'} mt={24}>
-          <ActionButton>
-              <Sound color={theme.colors.textLight}/>
+          <Text fontSize={32} fontWeight={'bold'}>
+            {keyword}
+          </Text>
+          <Text color={'textLight'} mt={6}>
+              {data?.telaffuz && data?.telaffuz}{data?.lisan}
+          </Text>
+        </Box>
+        <Box flexDirection={'row'} mt={24}>
+          <ActionButton disabled={!data}>
+            <Sound color={theme.colors.textLight} />
           </ActionButton>
-          <ActionButton ml={12}>
-              <BookmarkSolid width={24} height={21} color={"red"}/>
+          <ActionButton disabled={!data} ml={12}>
+            <Bookmark width={24} height={24} color={theme.colors.textLight} />
           </ActionButton>
-        <ActionButton ml="auto"  >
-          <Hand color={theme.colors.textLight} />
-          <ActionTitle> Turk dili isareti</ActionTitle>
-        </ActionButton>
-      </Box>
+          <ActionButton disabled={!data} ml="auto">
+            <Hand color={theme.colors.textLight} />
+            <ActionTitle> Turk dili isareti</ActionTitle>
+          </ActionButton>
+        </Box>
         <Box mt={32}>
-            <DetailSummaryItemContainer>
-            <DetailSummaryItemTitle>
-                Yazma, cizme vb. islerde kullanilan cesitli bicimlerde arac:
-            </DetailSummaryItemTitle>
-                <DetailSummaryItemSummary>
-                    "Kagit, kalem, murekkep, hepsi masanin ustundedir"
-                </DetailSummaryItemSummary>
-            </DetailSummaryItemContainer>
-            <DetailSummaryItemContainer border >
-                <DetailSummaryItemTitle>
-                    Yazma, cizme vb. islerde kullanilan cesitli bicimlerde arac:
-                </DetailSummaryItemTitle>
-                <DetailSummaryItemSummary>
-                    "Kagit, kalem, murekkep, hepsi masanin ustundedir"
-                </DetailSummaryItemSummary>
-            </DetailSummaryItemContainer>
-            <DetailSummaryItemContainer border >
-                <DetailSummaryItemTitle>
-                    Yazma, cizme vb. islerde kullanilan cesitli bicimlerde arac:
-                </DetailSummaryItemTitle>
-                <DetailSummaryItemSummary>
-                    "Kagit, kalem, murekkep, hepsi masanin ustundedir"
-                </DetailSummaryItemSummary>
-            </DetailSummaryItemContainer>
+          {data ? (
+            data.anlamlarListe.map(item => (  <DetailSummaryItemContainer data={item} border={item.anlam_sira !== '1'} />
+            ))
+          ) : (
+            [1, 2, 3].map(index => (
+              <DetailSummaryItemContainer border={index !== 1}>
+                <LoaderText />
+                <LoaderText width={250} mt={10} />
+              </DetailSummaryItemContainer>
+            ))
+          )}
+
+          {/* - */}
         </Box>
       </Box>
     </Box>
