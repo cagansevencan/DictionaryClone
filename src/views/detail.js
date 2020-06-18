@@ -14,8 +14,8 @@ import Svg from 'react-native-svg'
 import LoaderText from '../components/LoaderText'
 
 function DetailView({ route }) {
-  //const keyword = route.params?.keyword
-  const keyword = 'savaş'
+  const keyword = route.params?.keyword
+  //const keyword = 'savaş'
   const [data, setData] = React.useState(null)
 
   useFocusEffect(
@@ -66,12 +66,13 @@ function DetailView({ route }) {
           {data
             ? data.anlamlarListe.map(item => (
                 <DetailSummaryItemContainer
+                    key={item.anlam_sira }
                   data={item}
                   border={item.anlam_sira !== '1'}
                 />
               ))
             : [1, 2, 3].map(index => (
-                <DetailSummaryItemContainer border={index !== 1}>
+                <DetailSummaryItemContainer key={index} border={index !== 1}>
                   <LoaderText />
                   <LoaderText width={250} mt={10} />
                 </DetailSummaryItemContainer>

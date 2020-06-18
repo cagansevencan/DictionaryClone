@@ -11,6 +11,7 @@ export default function DetailSummaryItemContainer({
   ...props
 }) {
   const ornekler = data?.orneklerListe
+  const ozellikler = data?.ozelliklerListe && data.ozelliklerListe.map(_ => _.tam_adi) || ["isim"]
   return (
     <Box position="relative" bg={'white'} px={28} py={20} {...props}>
       {border && (
@@ -30,7 +31,7 @@ export default function DetailSummaryItemContainer({
             <Text color={'textLight'} ml={-14} mr={8}>
                 {data.anlam_sira}
             </Text>
-            <Text color={'red'}>ISIM</Text>
+            <Text color={'red'}>{ozellikler.join(", ")}</Text>
           </Box>
           <Box mt={8}>
             <Text fontSize={14} fontWeight={'600'}>
