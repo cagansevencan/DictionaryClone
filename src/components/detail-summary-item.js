@@ -10,6 +10,7 @@ export default function DetailSummaryItemContainer({
   border,
   ...props
 }) {
+  const ornekler = data?.orneklerListe
   return (
     <Box position="relative" bg={'white'} px={28} py={20} {...props}>
       {border && (
@@ -27,17 +28,21 @@ export default function DetailSummaryItemContainer({
         <Box>
           <Box flexDirection={'row'}>
             <Text color={'textLight'} ml={-14} mr={8}>
-              1
+                {data.anlam_sira}
             </Text>
             <Text color={'red'}>ISIM</Text>
           </Box>
           <Box mt={8}>
             <Text fontSize={14} fontWeight={'600'}>
-              {children}
+              {data.anlam}
             </Text>
+            {ornekler &&
             <Text color={'textLight'} ml={10} mt={12} fontWeight={'500'}>
-              {children}
+              {ornekler[0]?.ornek} <Text fontWeight={"700"} color={'textLight'}>
+              {ornekler[0]?.yazar_id !== "0" && `- ${ornekler[0]?.yazar[0].tam_adi}`}
             </Text>
+            </Text>}
+
           </Box>
         </Box>
       ) : (

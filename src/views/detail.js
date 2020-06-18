@@ -14,9 +14,9 @@ import Svg from 'react-native-svg'
 import LoaderText from '../components/LoaderText'
 
 function DetailView({ route }) {
-  const keyword = 'milliyet'
+  //const keyword = route.params?.keyword
+  const keyword = 'savaş'
   const [data, setData] = React.useState(null)
-
 
   useFocusEffect(
     React.useCallback(() => {
@@ -43,9 +43,12 @@ function DetailView({ route }) {
           <Text fontSize={32} fontWeight={'bold'}>
             {keyword}
           </Text>
-          <Text color={'textLight'} mt={6}>
-              {data?.telaffuz && data?.telaffuz}{data?.lisan}
-          </Text>
+          {(data?.telaffuz || data?.lisan) ? (
+            <Text color={'textLight'} mt={6}>
+              {data?.telaffuz && data?.telaffuz}
+              {data?.lisan}
+            </Text>
+          ) : null}
         </Box>
         <Box flexDirection={'row'} mt={24}>
           <ActionButton disabled={!data}>
@@ -60,17 +63,19 @@ function DetailView({ route }) {
           </ActionButton>
         </Box>
         <Box mt={32}>
-          {data ? (
-            data.anlamlarListe.map(item => (  <DetailSummaryItemContainer data={item} border={item.anlam_sira !== '1'} />
-            ))
-          ) : (
-            [1, 2, 3].map(index => (
-              <DetailSummaryItemContainer border={index !== 1}>
-                <LoaderText />
-                <LoaderText width={250} mt={10} />
-              </DetailSummaryItemContainer>
-            ))
-          )}
+          {data
+            ? data.anlamlarListe.map(item => (
+                <DetailSummaryItemContainer
+                  data={item}
+                  border={item.anlam_sira !== '1'}
+                />
+              ))
+            : [1, 2, 3].map(index => (
+                <DetailSummaryItemContainer border={index !== 1}>
+                  <LoaderText />
+                  <LoaderText width={250} mt={10} />
+                </DetailSummaryItemContainer>
+              ))}
 
           {/* - */}
         </Box>
